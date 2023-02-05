@@ -15,22 +15,29 @@ function testeemail(){
 }
 
 // Función para guardar el estado del checkbox en el local storage
-function rememberMe() {
-    if (document.getElementById("remember").checked) {
-      localStorage.setItem("remember", "true");
-    } else {
-      localStorage.removeItem("remember");
-    }
+  function rememberMe(remember) {
+      if (remember.checked) {
+          localStorage.username = document.getElementById("exampleInputEmail").value;
+          localStorage.password = document.getElementById("exampleInputPassword").value;
+          localStorage.remember = true;
+      } else {
+          localStorage.username = "";
+          localStorage.password = "";
+          localStorage.remember = false;
+      }
   }
+
+  window.onload = function() {
+      if (localStorage.remember == "true") {
+          document.getElementById("exampleInputEmail").value = localStorage.username;
+          document.getElementById("exampleInputPassword").value = localStorage.password;
+          document.getElementById("remember").checked = true;
+      }
+  };
+
   
-  // Función para cargar el estado del checkbox en el formulario
-  function loadRememberMe() {
-    if (localStorage.getItem("remember") === "true") {
-      document.getElementById("remember").checked = true;
-      console.log("Login salvo")
-    }
-  }
-  
-  // Llamar a la función loadRememberMe al cargar la página
-  window.onload = loadRememberMe;
+  // Chama as funçoes ao carregar a página
+  //window.onload = loadRememberMe;
+
+
   

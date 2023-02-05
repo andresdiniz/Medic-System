@@ -1,20 +1,22 @@
 <?php
+function conectadb(){
     $host = "localhost";
-    $username = "root@localhost";
+    $username = "root";
     $password = "";
-    $dbname = "medic-system";
+    $dbname = "medicsystem";
 
     // Crear conexión
-    $conn = mysqli_connect($host, $username, $password, $dbname);
+    $mysqli = mysqli_connect($host, $username, $password, $dbname);
 
     // Verificar conexión
-    if (!$conn) {
-    die("Erro de conexão: " . mysqli_connect_error());
+    if (!$mysqli) {
+        die("Erro de conexão: " . mysqli_connect_error());
+    }else{
+        return $mysqli;
     }
-    echo "Conexão bem-sucedida";
 
-    $mysqli = $conn;
     // Cerrar conexión
-    mysqli_close($conn);
-    return $mysqli;
+    //mysqli_close($conn);
+    
+}
 ?>
