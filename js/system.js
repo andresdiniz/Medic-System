@@ -33,9 +33,7 @@ function testeemail(){
           document.getElementById("exampleInputPassword").value = localStorage.password;
           document.getElementById("remember").checked = true;
       }
-  };
-
-  
+  }; 
   // Chama as funçoes ao carregar a página
   //window.onload = loadRememberMe;
 
