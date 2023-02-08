@@ -3,7 +3,7 @@ require "permissoes.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="PT-BR">
 
 <head>
 

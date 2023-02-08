@@ -19,6 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
     <script src="js/sb-admin-2.js"></script>
 
@@ -45,13 +47,18 @@
                                     </div>
                                     <form class="user" action="logar.php" method="POST">
                                         <div class="form-group">
+                                            <label for="user">E-mail:</label>
                                             <input type="email" name="user" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address..." required>
                                         </div>
                                         <div class="form-group">
-                                            <input  name="pwd" type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password" required>
+                                            <label for="pwd">Senha:</label><span class="input-group-addon">
+                                            <div class="viewpass">
+                                                <input name="pwd" type="password" class="form-control form-control-user "
+                                                id="exampleInputPassword" placeholder="Password" required >
+                                                <span class="lnr lnr-eye" id="olho"></span>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -64,7 +71,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="forgot-password.html">Não lembra sua senha?</a>
                                     </div>
                                 </div>
                             </div>
@@ -90,6 +97,9 @@
 
     <!--Codigo JS personalizado-->
     <script src="js/system.js"></script>
+
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 
 </body>
 

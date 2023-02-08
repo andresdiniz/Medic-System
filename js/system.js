@@ -34,6 +34,23 @@ function testeemail(){
           document.getElementById("remember").checked = true;
       }
   }; 
+
+// Ocultar e mostrar a senha
+  document.getElementById('olho').addEventListener('mousedown', function() {
+    document.getElementById('exampleInputPassword').type = 'text';
+  });
+  
+  document.getElementById('olho').addEventListener('mouseup', function() {
+    document.getElementById('exampleInputPassword').type = 'password';
+  });
+  
+  // Para que o password não fique exposto apos mover a imagem.
+  document.getElementById('olho').addEventListener('mousemove', function() {
+    document.getElementById('exampleInputPassword').type = 'password';
+  });
+
+
+  
   // Chama as funçoes ao carregar a página
   //window.onload = loadRememberMe;
 

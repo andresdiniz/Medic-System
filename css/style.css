@@ -1,0 +1,10 @@
+.viewpass{
+    position: relative !important;
+}
+.lnr-eye {
+    position: absolute !important;
+    top: 16.5px;
+    right: 12px;
+    cursor: pointer;
+    font-weight: bolder;
+}
