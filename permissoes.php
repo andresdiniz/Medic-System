@@ -1,4 +1,5 @@
 <?php 
+
     $login_cookie = $_COOKIE['login'];
     $adm_cookie = $_COOKIE['adm'];
     if(!isset($login_cookie)){
