@@ -1,39 +1,46 @@
+
 <?php
 
-#ini_set('display_errors', 1);
-#error_reporting(E_ALL);
-require 'conexao.php';
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-$login = $_POST['user'];
-$senha = $_POST['pwd'];
 $entrar = $_POST['entrar'];
 
-if (isset($entrar)) {
-    logando();
-}
-function logando(){
-        $mysqli = conectadb();
-        $stmt = $mysqli->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->bind_param("s", $login);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $array = $result->fetch_assoc();
-        $id = $array['id'];
+if (isset($_POST["envia"])) {
+    $envia = $_POST["envia"];
+    $latitude = $envia["lat"];
+    
+    $longitude = $envia["lng"];
+    
+    // Use the latitude and longitude values here as needed
+  }
 
-        $hash = $array['senha'];
-        
-        $name = $array['nome'];
-            if($array['tipo'] == 'ADM'){
-            setcookie("adm",$name);
-            }else{
-            setcookie("userpadrao",$name);
-        }
-        
+// Use as coordenadas para fazer alguma coisa...
+
+function logando(){
+    $login = $_POST['user'];
+    $senha = $_POST['pwd'];
+    $hash1 = password_hash($senha, PASSWORD_DEFAULT);
+    require 'conexao.php';
+    $mysqli = conectadb();
+    $stmt = $mysqli->prepare("SELECT * FROM user WHERE username = ?");
+    $stmt->bind_param("s", $login);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $array = $result->fetch_assoc();
+    $id = $array['id'];
+    $hash = $array['senha'];
+    $tipo = $array['nivel'];
+    $name = $array['name'];
+    $num_rows = $result->num_rows;
+    if($num_rows>0){
+        setcookie("tp",$tipo,0,"","",true,true);
+
         if (password_verify($senha, $hash)){
             date_default_timezone_set('America/Sao_Paulo');
-            $data = date('d/m/Y \à\s H:i:s');
-            $query = mysqli_query($mysqli,"UPDATE users SET ultimologin = '$data' WHERE username ='$login'");
-            setcookie("login",$name,time()+28800);
+            $data1 = date('Y/m/d H:i:s');
+            setcookie("login",$id,time()+28800);
+            setcookie("username",$name,time()+28800);
             function my_session_start() {
                 session_start();
                 // Do not allow to use too old session ID
@@ -42,8 +49,8 @@ function logando(){
                     session_start();
                 }
             }
-            $stmt1 = $mysqli->prepare("update users set ultimologin = ? where email = ?");
-            $stmt1->bind_param("ss", $data,$login);
+            $stmt1 = $mysqli->prepare("UPDATE user SET ultimologin = ? WHERE username = ?");
+            $stmt1->bind_param("ss", $data1,$login);
             $stmt1->execute();
             // My session regenerate id function
             function my_session_regenerate_id() {
@@ -78,13 +85,25 @@ function logando(){
             //  - User logged out
             //  - Certain period has passed
             my_session_regenerate_id();
+            $expire = time() + (86400); // 1 dia em segundos
+            setcookie("ID", $id, $expire, "/", "", true, true);
             header("Location:index.php");
         }else{
             echo ("<script language='javascript' type='text/javascript'>
-            alert('Login e/ou senha incorretos $hash ');window.location
-            .href='login.html';</script>");
+            alert('Erro ao fazer login');window.location
+            .href='login.html';
+            </script>");
             die();
         }
-            
-    }   
+    }else{
+        echo ("<script language='javascript' type='text/javascript'>
+            alert('Login e/ou senha incorretos $hash ');//window.location
+            .href='login.html';</script>");
+            die();
+    }
+}
+if (isset($entrar)) {
+    logando();
+}
+
 ?>

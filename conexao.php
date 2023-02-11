@@ -3,7 +3,7 @@ function conectadb(){
     $host = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "medicsystem";
+    $dbname = "medic-system";
 
     // Crear conexión
     $mysqli = mysqli_connect($host, $username, $password, $dbname);

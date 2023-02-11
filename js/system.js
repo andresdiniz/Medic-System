@@ -1,5 +1,4 @@
-var email_login = document.getElementById('floatingInput');
-console.log(email_login);
+
 
 function validateEmail(email_login) {
     const re = /\S+@\S+\.\S+/;
@@ -48,7 +47,27 @@ function testeemail(){
   document.getElementById('olho').addEventListener('mousemove', function() {
     document.getElementById('exampleInputPassword').type = 'password';
   });
-
+  
+  document.getElementById('exampleInputEmail').addEventListener('blur', function() {
+    var email_login = document.getElementById("exampleInputEmail").value;
+    console.log(email_login);
+    var url = 'https://api.emailvalidation.io/v1/info?apikey=wvNSR0m0ZB39TK9npzVf9Iex2tGO2iwQjoqZlhPY&email='+email_login; 
+    
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        var checkd = data['smtp_check'];
+        console.log(checkd);
+        if (checkd == true){ 
+          let check = window.document.getElementsByClassName('valid');
+          check.classList.add('lnr-smile');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
 
   
   // Chama as funçoes ao carregar a página

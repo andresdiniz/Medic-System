@@ -8,3 +8,9 @@
     cursor: pointer;
     font-weight: bolder;
 }
+.validar{
+    position: absolute !important;
+    top: 16.5px;
+    right: 12px;
+    font-weight: bolder;
+}

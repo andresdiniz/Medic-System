@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Andre Soares Diniz">
 
     <title>SB Admin 2 - Login</title>
 
@@ -23,6 +23,34 @@
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
     <script src="js/sb-admin-2.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+	window.onload = localizarUsuario();
+function localizarUsuario(){
+  if (window.navigator && window.navigator.geolocation) {
+   var geolocation = window.navigator.geolocation;
+   geolocation.getCurrentPosition(sucesso, erro);
+  } else {
+     alert('Geolocalização não suportada em seu navegador.')
+  }
+  function sucesso(posicao){
+    console.log(posicao);
+    var latitude = posicao.coords.latitude;
+    var longitude = posicao.coords.longitude; 
+    var precisao = posicao.coords.accuracy;	 
+    sessionStorage.setItem('latitude', latitude);
+    sessionStorage.setItem('longitude', longitude);
+    sessionStorage.setItem('precisao', precisao);
+  }
+  function erro(error){
+    console.log(error)
+  }
+}
+</script>
+        
 
 </head>
 
@@ -47,31 +75,30 @@
                                     </div>
                                     <form class="user" action="logar.php" method="POST">
                                         <div class="form-group">
-                                            <label for="user">E-mail:</label>
-                                            <input type="email" name="user" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address..." required>
+                                            <label for="user">Nome de Usuario:</label>
+                                                <input type="text" name="user" class="form-control form-control-user"
+                                                    id="exampleInputEmail" aria-describedby="emailHelp"
+                                                    placeholder="Entre com o nome de usuario..." required>
                                         </div>
                                         <div class="form-group">
                                             <label for="pwd">Senha:</label><span class="input-group-addon">
                                             <div class="viewpass">
                                                 <input name="pwd" type="password" class="form-control form-control-user "
-                                                id="exampleInputPassword" placeholder="Password" required >
+                                                    id="exampleInputPassword" placeholder="Password" required >
                                                 <span class="lnr lnr-eye" id="olho"></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="remember" onclick="rememberMe(this)">
-                                                <label class="custom-control-label" for="remember" >Remember
-                                                    Me</label>
+                                                <label class="custom-control-label" for="remember" >Lembrar Dados</label>
                                             </div>
                                         </div>
                                         <input type="submit" value="Login" class="btn btn-primary btn-user btn-block" name="entrar">
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Não lembra sua senha?</a>
+                                        <a class="small" href="forgot-password.php">Não lembra sua senha?</a>
                                     </div>
                                 </div>
                             </div>
