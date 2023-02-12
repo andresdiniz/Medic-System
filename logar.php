@@ -6,17 +6,6 @@ error_reporting(E_ALL);
 
 $entrar = $_POST['entrar'];
 
-if (isset($_POST["envia"])) {
-    $envia = $_POST["envia"];
-    $latitude = $envia["lat"];
-    
-    $longitude = $envia["lng"];
-    
-    // Use the latitude and longitude values here as needed
-  }
-
-// Use as coordenadas para fazer alguma coisa...
-
 function logando(){
     $login = $_POST['user'];
     $senha = $_POST['pwd'];
@@ -39,7 +28,7 @@ function logando(){
         if (password_verify($senha, $hash)){
             date_default_timezone_set('America/Sao_Paulo');
             $data1 = date('Y/m/d H:i:s');
-            setcookie("login",$id,time()+28800);
+            setcookie("login",$id,time()+28800,"","",true,true);
             setcookie("username",$name,time()+28800);
             function my_session_start() {
                 session_start();
