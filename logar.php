@@ -5,6 +5,13 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 $entrar = $_POST['entrar'];
+$latitude = $HTTP_RAW_POST_DATA['latitude'];
+$longitude = $HTTP_RAW_POST_DATA['longitude'];
+$precisao = $HTTP_RAW_POST_DATA['precisao'];
+
+setcookie('lat',$latitude,time()+80,"","",true,true);
+setcookie('lng',$longitude,time()+80,"","",true,true);
+
 
 function logando(){
     $login = $_POST['user'];

@@ -3,6 +3,11 @@
     $login_cookie = $_COOKIE['login'];
     $tp_cookie = $_COOKIE['tp'];
     $nome_user = $_COOKIE['username'];
+
+// Do something with the latitude, longitude, and accuracy values
+
+
+
     if(!isset($login_cookie)){
         echo ("<script language='javascript' type='text/javascript'>
         alert('Login e/ou senha incorretos');window.location
@@ -16,4 +21,7 @@
         }elseif($tp_cookie == "MED"){
             setcookie("med",$x,0,"","",true,true);
         }
+
+
+
 ?>

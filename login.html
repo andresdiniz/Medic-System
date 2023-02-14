@@ -28,27 +28,45 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
 <script>
+    window.document.cookie = "login=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 	window.onload = localizarUsuario();
-function localizarUsuario(){
-  if (window.navigator && window.navigator.geolocation) {
-   var geolocation = window.navigator.geolocation;
-   geolocation.getCurrentPosition(sucesso, erro);
-  } else {
-     alert('Geolocalização não suportada em seu navegador.')
-  }
-  function sucesso(posicao){
-    console.log(posicao);
-    var latitude = posicao.coords.latitude;
-    var longitude = posicao.coords.longitude; 
-    var precisao = posicao.coords.accuracy;	 
-    sessionStorage.setItem('latitude', latitude);
-    sessionStorage.setItem('longitude', longitude);
-    sessionStorage.setItem('precisao', precisao);
-  }
-  function erro(error){
-    console.log(error)
-  }
-}
+    function localizarUsuario(){
+        if (window.navigator && window.navigator.geolocation) {
+            var geolocation = window.navigator.geolocation;
+            geolocation.getCurrentPosition(sucesso, erro);
+        } else {
+            alert('Geolocation is not supported in your browser.')
+        }
+    }
+    
+    function sucesso(posicao){
+        console.log(posicao);
+        var latitude = posicao.coords.latitude;
+        var longitude = posicao.coords.longitude; 
+        var precisao = posicao.coords.accuracy;	 
+        sessionStorage.setItem('latitude', latitude);
+        sessionStorage.setItem('longitude', longitude);
+        sessionStorage.setItem('precisao', precisao);
+        // JavaScript code
+        $(document).ready(function(){    
+            $.ajax({
+                url: "permissoes.php",
+                contentType:'application/json',
+                datType:'json',
+                type:'post',
+                data: {latitude: latitude, longitude: longitude, precisao: precisao},
+                success: function(data) {
+                    console.log("Data has been sent to the server");
+                }
+            });
+        });
+    }
+    
+    function erro(error){
+        console.log(error)
+    }
+    
+        
 </script>
         
 
