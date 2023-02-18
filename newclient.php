@@ -1,31 +1,33 @@
-<?php 
+<?php
 require "permissoes.php";
-
+require "conexao.php";
+$mysqli = conectadb();
+echo "FAZER A PARTE DO PHP E BANCO DE DADOS"
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Andre Soares Diniz">
-
-    <title>Clinic System - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Cliente</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-</head>
+    <!--Scripts proprios-->
+    <script src="js/system-system.js" async></script>
+
+</head></head>
 
 <body id="page-top">
 
@@ -50,7 +52,7 @@ require "permissoes.php";
             <li class="nav-item active">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Tela Inicial</span></a>
             </li>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -173,46 +175,8 @@ require "permissoes.php";
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Procurar por..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -225,15 +189,15 @@ require "permissoes.php";
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="perfiuser.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="settings.php">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Configurações
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="logs">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Log de Atividades
                                 </a>
@@ -255,166 +219,122 @@ require "permissoes.php";
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        
+                        <h1 class="h3 mb-0 text-gray-800">Cadastro de cliente</h1>
                     </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Agendamentos (Mês)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Quantidade</div>
+                    <form action="" method="post" class="form-floating" autocomplete="off">
+                        <div class="row mb-3">
+                            <div class="col-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" placeholder="Nome do cliente" id="NomeCliente" required="Nome do Cliente é obrigatorio" onkeyup="capitalize(event)"">
+                                    <label for="NomeCliente">Nome</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" placeholder="CPF" maxlength="14" id="CPFCliente" oninput="mascara(this, '###.###.###-##')" onchange="cpf(this.value)" required>
+                                    <label for="CPFCliente">Numero do CPF</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating">
+                                    <input type="tel" class="form-control" placeholder="Numero de Telefone" id="telefone" onchange="formatarTelefone()" required>
+                                    <label for="telefone">Telefone</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-floating">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="gender" id="male" value="male" checked>
+                                            Masculino
+                                        </label>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
+                                        <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="gender" id="female" value="female">
+                                            Feminino
+                                        </label>
                                     </div>
+                                  </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-2">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" placeholder="CEP" id="cepid" required="Coloque o cep" onblur="pesquisacep(this.value)" oninput="mascara(this, '#####-###')" maxlength="9">
+                                    <label for="cepid">CEP</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating">
+                                        <input type="text" class="form-control" placeholder="Rua" id="rua" required="Rua é obrigatoria">
+                                        <label for="rua">Rua</label>
+                                    </div>
+                                </div>
+                            <div class="col-2">
+                                <div class="form-floating">
+                                        <input type="number" class="form-control" placeholder="Numero" id="nid" required="Cidade é obrigatorio">
+                                        <label for="nid">Numero</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" placeholder="Cidade" id="cidade" required="Cidade é obrigatorio">
+                                    <label for="cidade">Cidade</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-floating">
+                                        <select name="" id="uf"class="form-control">
+                                            <option value="" selected>Selecione um Estado</option>
+                                        </select>
+                                        <label for="uf">UF</label>
+                                    </div>
+                            </div>     
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" placeholder="Complemento" id="cpd">
+                                    <label for="cpd">Complemento</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" placeholder="Bairro" id="bairro">
+                                    <label for="cpd">Bairro</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating">
+                                        <input type="text" class="form-control" placeholder="Convenio"  id="ConvCliente">
+                                        <label for="ConvCliente">Convenio do Cliente</label>
+                                    </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-4">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" placeholder="Numero convenio" id="nid">
+                                    <label for="ncinvid">Codigo convênio</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating">
+                                        <input type="date" class="form-control" placeholder="Data de nascimento"  id="datanascimento">
+                                        <label for="datanascimento">Data de nascimento</label>
+                                    </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating">
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                    <button type="button" class="btn btn-warning" onclick="refresh()">Resetar</button>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Atendimentos (Mês)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Quantidade</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Receitas
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Quantidade</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Clientes</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Quantidade</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Visão Geral Atendimentos</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Filtros:</div>
-                                            <a class="dropdown-item" href="#">Tudo</a>
-                                            <a class="dropdown-item" href="#">Especialidade</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Convenio</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Fontes de recuros</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Filtros:</div>
-                                            <a class="dropdown-item" href="#">Filtrar</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    
+                    </form> 
 
                 </div>
                 <!-- /.container-fluid -->
@@ -466,6 +386,7 @@ require "permissoes.php";
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>

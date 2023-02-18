@@ -26,7 +26,7 @@ function testeemail(){
       }
   }
 
-  window.onload = function() {
+  window.document.getElementById('exampleInputEmail').onload = function() {
       if (localStorage.remember == "true") {
           document.getElementById("exampleInputEmail").value = localStorage.username;
           document.getElementById("exampleInputPassword").value = localStorage.password;
@@ -69,9 +69,3 @@ function testeemail(){
       });
   });
 
-  
-  // Chama as funçoes ao carregar a página
-  //window.onload = loadRememberMe;
-
-
-  
