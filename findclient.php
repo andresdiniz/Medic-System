@@ -1,25 +1,9 @@
 <?php
 require "permissoes.php";
 $mysqli = conectadb();
-$envia = $_POST['Enviar'];
 
-if(isset($envia)){
-    $nome = $_POST['nome'];//OK
-    $cpf = $_POST['cpf'];//OK
-    $telefone = $_POST['tel'];//OK
-    $sexo = $_POST['gender'];//OK
-    $cep = $_POST['cep'];//OK
-    $rua = $_POST['rua'];//OK
-    $numero = $_POST['numero'];//OK
-    $bairro = $_POST['bairro'];//OK
-    $cidade = $_POST['cidade'];//OK
-    $uf = $_POST['uf'];//OK
-    $convenio = $_POST['convenio'];//OK
-    $numeroconv = $_POST['nconvenio'];//OK
-    $complemento = $_POST['complemento'];//OK
-    $datanasc = $_POST['datanasc'];//OK
-}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -40,6 +24,8 @@ if(isset($envia)){
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
+    <!--Scripts proprios-->
+    <script src="js/system-system.js" async></script>
 
 </head></head>
 
@@ -235,115 +221,17 @@ if(isset($envia)){
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Cadastro de cliente</h1>
                     </div>
-                    <form action="" method="post" class="responsive form-floating" autocomplete="off">
-                        <div class="row mb-3 responsive">
-                            <div class="col-4">
+                    <form action="" method="post" class="form-floating" autocomplete="off">
+                        <div class="row mb-3">
+                            <div class="col-6">
                                 <div class="form-floating">
-                                    <input type="text" name="nome" class="form-control" placeholder="Nome do cliente" id="NomeCliente" required="Nome do Cliente é obrigatorio" onkeyup="capitalize(event)">
-                                    <label for="NomeCliente">Nome</label>
+                                    <input type="text" name="buscar" class="form-control" placeholder="Nome do cliente" id="NomeCliente" required="Deve ser preenchido" onkeyup="capitalize(event)">
+                                    <label for="NomeCliente">CPF / Telefone</label>
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div class="form-floating">
-                                    <input type="text" name="cpf" class="form-control" placeholder="CPF" maxlength="14" id="CPFCliente" onkeyup="mascara(this, '###.###.###-##')"  required>
-                                    <label for="CPFCliente">CPF</label>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-floating">
-                                    <input type="tel" name="tel" class="form-control" placeholder="Numero de Telefone" id="telefone" onkeypress="mascara2(this)" maxlength="15" required>
-                                    <label for="telefone">Telefone</label>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="form-floating">
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="gender" id="male" value="male" checked>
-                                            Masculino
-                                        </label>
-                                        </div>
-                                        <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="gender" id="female" value="female">
-                                            Feminino
-                                        </label>
-                                    </div>
-                                  </div>
-                            </div>
-                            
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-2">
-                                <div class="form-floating">
-                                    <input type="text" name="cep" id="cep" class="form-control" placeholder="CEP" id="cepid" required="Coloque o cep" onblur="pesquisacep(this.value)" oninput="mascara(this, '#####-###')" maxlength="9">
-                                    <label for="cepid">CEP</label>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-floating">
-                                        <input type="text" name="rua" class="form-control" placeholder="Rua" id="rua" required="Rua é obrigatoria">
-                                        <label for="rua">Rua</label>
-                                    </div>
-                                </div>
-                            <div class="col-2">
-                                <div class="form-floating">
-                                        <input type="number" name="numero" class="form-control" placeholder="Numero" id="nid" required="Cidade é obrigatorio">
-                                        <label for="nidconv">Numero</label>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="form-floating">
-                                    <input type="text" name="cidade" class="form-control" placeholder="Cidade" id="cidade" required="Cidade é obrigatorio">
-                                    <label for="cidade">Cidade</label>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="form-floating">
-                                        <select name="uf" id="uf"class="form-control">
-                                            <option value="" selected>Selecione Estado</option>
-                                        </select>
-                                        <label for="uf">UF</label>
-                                    </div>
-                            </div>     
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4">
-                                <div class="form-floating">
-                                    <input type="text" name="complemento" class="form-control" placeholder="Complemento" id="cpd">
-                                    <label for="cpd">Complemento</label>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-floating">
-                                    <input type="text" name="bairro" class="form-control" placeholder="Bairro" id="bairro">
-                                    <label for="cpd">Bairro</label>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-floating">
-                                        <input type="text" name="convenio" class="form-control" placeholder="Convenio"  id="ConvCliente">
-                                        <label for="ConvCliente">Convenio do Cliente</label>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4">
-                                <div class="form-floating">
-                                    <input type="number" name="nconvenio" class="form-control" placeholder="Numero convenio" id="nid">
-                                    <label for="ncinvid">Codigo convênio</label>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-floating">
-                                        <input type="date" name="datanasc" class="form-control" placeholder="Data de nascimento"  id="datanascimento" onchange="calcularIdade(this.value)">
-                                        <label for="datanascimento">Data de nascimento</label>
-                                    </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-floating">
-                                    <button type="submit" name="Enviar" class="btn btn-primary" id="submeter">Enviar</button>
-                                    <button type="button" class="btn btn-warning" onclick="refresh()">Resetar</button>
+                                <div class="mt-3">
+                                    <input type="submit" class="btn btn-primary" id="buscar" value="Buscar">
                                 </div>
                             </div>
                         </div>
@@ -414,9 +302,6 @@ if(isset($envia)){
     <script src="js/demo/chart-pie-demo.js"></script>
 
     <!--Confere a presença de cookies e logins-->
-
-    <!--Scripts proprios-->
-    <script src="js/system-system.js" defer></script>
 
 
 </body>

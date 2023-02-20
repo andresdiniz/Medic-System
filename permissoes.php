@@ -1,4 +1,5 @@
 <?php 
+    require "conexao.php";
     $x = MD5(rand(1,150));
     $login_cookie = $_COOKIE['login'];
     $tp_cookie = $_COOKIE['tp'];

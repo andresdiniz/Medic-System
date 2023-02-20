@@ -73,7 +73,7 @@ require "permissoes.php";
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Controle de Clientes:</h6>
                         <a class="collapse-item" href="newclient.php"><i class="fas fa-sharp fa-solid fa-plus"></i>&nbsp;Novo Cliente</a>
-                        <a class="collapse-item" href="register.html"><i class="fas fa-search"></i>&nbsp;Buscar Clientes</a>
+                        <a class="collapse-item" href="findclient.php"><i class="fas fa-search"></i>&nbsp;Buscar Clientes</a>
                         <a class="collapse-item" href="forgot-password.html"><i class="fa-sharp fas fa-file"></i>&nbsp;Prontuario Cliente</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Outras Paginas:</h6>
