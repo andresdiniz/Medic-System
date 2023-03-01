@@ -2,6 +2,42 @@
 require "permissoes.php";
 $mysqli = conectadb();
 
+$margem = $_POST['margem'];
+
+if(isset($margem)){
+$cpf = '34323635672'; // CPF of the beneficiary
+$tipo = ''; // optional parameter to filter by type of consignment
+$competencia = '202301'; // reference month and year of the margin
+$pagina = '1'; // page number of the result set
+
+$url = "https://www.portaltransparencia.gov.br/api-de-dados/margem-disponivel?cpf=$cpf&tipo=$tipo&competencia=$competencia&pagina=$pagina";
+
+$headers = array(
+  'chave-api-dados: 65191aa3d37024dd6c8b17c5968dfd73', // replace with your API key
+);
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $url,
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_HTTPHEADER => $headers,
+));
+
+$response = curl_exec($curl);
+
+if (curl_errno($curl)) {
+  echo 'Error: ' . curl_error($curl);
+  exit;
+}
+
+$data = json_decode($response, true);
+
+curl_close($curl);
+
+print_r($data);
+}
+
 ?>
 
 
@@ -221,7 +257,7 @@ $mysqli = conectadb();
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Cadastro de cliente</h1>
                     </div>
-                    <form action="" method="post" class="form-floating" autocomplete="off">
+                    <form action="findclient.php" method="post" class="form-floating" autocomplete="off">
                         <div class="row mb-3">
                             <div class="col-6">
                                 <div class="form-floating">
@@ -235,7 +271,9 @@ $mysqli = conectadb();
                                 </div>
                             </div>
                         </div>
-                    </form> 
+                    </form>
+                    <input type="submit" name="margem" value="Margen"> 
+                    <button onclick="in100()" >Margem</button>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -303,6 +341,7 @@ $mysqli = conectadb();
 
     <!--Confere a presença de cookies e logins-->
 
+    <script src="js/apiinss.js"></script>
 
 </body>
 
